@@ -12,6 +12,16 @@ const fetchData = async function (req, res) {
     res.status(500).send('Error retrieving user data from database');
   }
 };
+const fetchUser = async function (req, res) {
+  try {
+    const userData = await Userr.find({});
+    // res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+    res.json(userData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving user data from database');
+  }
+};
 
 const productData = async function (req, res) {
   try {
@@ -71,3 +81,4 @@ module.exports.createData = createData;
 module.exports.productData = productData;
 module.exports.createProduct = createProduct;
 module.exports.createUser = createUser;
+module.exports.fetchUser = fetchUser;
