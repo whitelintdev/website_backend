@@ -4,34 +4,28 @@ const registerSchema = new mongoose.Schema({
   firstName: {
     type: String,
   },
-  LastName: {
+  lastName: {
     type: String,
   },
-  Email: {
-    type: String,
-
-  },
-  ContactNo: {
+  email: {
+    type: String,},
+  contactNo: {
     type: String,
   },
-  Industry: {
+  industry: {type: String,
+  },
+  modelName: {type: String,
+  },
+  modelSerialNo: {
     type: String,
   },
-  ModelName: {
+  city: {
     type: String,
+    
   },
-  ModelSerialNo: {
-    type: String,
-  },
-  City: {
-    type: String,
-  },
-  Country: {
+  country: {
     type: String,
   }
 });
 
-module.exports = mongoose.model('Register', registerSchema);
-
-
-
+module.exports = mongoose.model('User', registerSchema);
