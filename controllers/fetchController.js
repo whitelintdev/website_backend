@@ -1,6 +1,6 @@
 const User = require('../models/fetchModel');
 const Product = require('../models/productModel');
-const Register = require('../models/registerModel')
+const User = require('../models/registerModel')
 
 const fetchData = async function (req, res) {
   try {
@@ -53,10 +53,14 @@ const createProduct = async function (req, res) {
 };
 const createUser = async function (req, res) {
   try {
-    const user = new Register(req.body);
-    await user.save();
-    // res.header('Access-Control-Allow-Origin', '*');
-    res.status(201).json({ message: 'User created successfully' });
+    
+    let reqBody = req.body;
+    let createUser = await User.create(reqBody);
+    res.status(201).send({
+        status: true,
+        message: "user successfully registerd",
+        data: createUser,
+    });;
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
