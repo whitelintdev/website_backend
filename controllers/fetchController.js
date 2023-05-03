@@ -1,6 +1,6 @@
 const User = require('../models/fetchModel');
 const Product = require('../models/productModel');
-const User = require('../models/registerModel')
+const Userr = require('../models/registerModel')
 
 const fetchData = async function (req, res) {
   try {
@@ -55,7 +55,7 @@ const createUser = async function (req, res) {
   try {
     
     let reqBody = req.body;
-    let createUser = await User.create(reqBody);
+    let createUser = await  Userr.create(reqBody);
     res.status(201).send({
         status: true,
         message: "user successfully registerd",
