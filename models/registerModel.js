@@ -9,7 +9,6 @@ const registerSchema = new mongoose.Schema({
   },
   Email: {
     type: String,
-    required: true,
 
   },
   ContactNo: {
@@ -23,7 +22,6 @@ const registerSchema = new mongoose.Schema({
   },
   ModelSerialNo: {
     type: String,
-    required: true,
   },
   City: {
     type: String,
@@ -34,4 +32,6 @@ const registerSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Register', registerSchema);
+
+
 
