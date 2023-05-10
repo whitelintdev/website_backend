@@ -8,4 +8,5 @@ router.get('/fetchproduct',fetchController.productData)
 router.post('/post',fetchController.createData)
 router.post('/user',fetchController.createUser)
 router.get('/fetchuser',fetchController.fetchUser)
+router.post('/login',fetchController.login)
 module.exports = router;
