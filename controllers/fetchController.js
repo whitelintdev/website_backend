@@ -75,6 +75,8 @@ const createUser = async function (req, res) {
     res.status(400).json({ error: error.message });
   }
 };
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'admin';
 const login = async function (req, res)  {
   try {
   const username = req.body.username;
