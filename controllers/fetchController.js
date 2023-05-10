@@ -75,6 +75,24 @@ const createUser = async function (req, res) {
     res.status(400).json({ error: error.message });
   }
 };
+const login = async function (req, res)  {
+  try {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  // Check if the credentials match the admin account
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    // If so, generate a JWT token with the admin flag
+    //const token = jwt.sign({ username, isAdmin: true }, JWT_SECRET, { expiresIn: '1h' });
+    res.json({ message:'login successfully' });
+  } else {
+    // If not, return an error
+    res.status(401).json({ message: 'Invalid credentials' });
+  }
+}  catch (error) {
+  res.status(400).json({ error: error.message });
+}
+};
 
 module.exports.fetchData = fetchData;
 module.exports.createData = createData;
@@ -82,3 +100,4 @@ module.exports.productData = productData;
 module.exports.createProduct = createProduct;
 module.exports.createUser = createUser;
 module.exports.fetchUser = fetchUser;
+module.exports.login = login;
