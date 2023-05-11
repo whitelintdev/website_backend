@@ -1,6 +1,7 @@
 const User = require('../models/fetchModel');
 const Product = require('../models/productModel');
-const Userr = require('../models/registerModel')
+const Userr = require('../models/registerModel');
+const mongoose = require('mongoose');
 
 const fetchData = async function (req, res) {
   try {
@@ -96,6 +97,78 @@ const login = async function (req, res)  {
 }
 };
 
+const deleteSecurityProduct = async function (req, res) {
+  try {
+    const id = req.params.id;
+
+    // Check if the ID is a valid MongoDB ObjectID
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(400).json({ message: 'Invalid ID' });
+      return;
+    }
+
+    const result = await User.findByIdAndDelete(id);
+
+    if (!result) {
+      res.status(404).json({ message: 'Security services not found' });
+      return;
+    }
+
+    res.json({ message: 'Security services deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+const deleteInvestigationProduct = async function (req, res) {
+  try {
+    const id = req.params.id;
+
+    // Check if the ID is a valid MongoDB ObjectID
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(400).json({ message: 'Invalid ID' });
+      return;
+    }
+
+    const result = await Product.findByIdAndDelete(id);
+
+    if (!result) {
+      res.status(404).json({ message: 'Investigation Service not found' });
+      return;
+    }
+
+    res.json({ message: 'Investigation product deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+const deleteUser = async function (req, res) {
+  try {
+    const id = req.params.id;
+
+    // Check if the ID is a valid MongoDB ObjectID
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(400).json({ message: 'Invalid ID' });
+      return;
+    }
+
+    const result = await Userr.findByIdAndDelete(id);
+
+    if (!result) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
 module.exports.fetchData = fetchData;
 module.exports.createData = createData;
 module.exports.productData = productData;
@@ -103,3 +176,6 @@ module.exports.createProduct = createProduct;
 module.exports.createUser = createUser;
 module.exports.fetchUser = fetchUser;
 module.exports.login = login;
+module.exports.deleteSecurityProduct = deleteSecurityProduct;
+module.exports.deleteInvestigationProduct= deleteInvestigationProduct;
+module.exports.deleteUser= deleteUser;
