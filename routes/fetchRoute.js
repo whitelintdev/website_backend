@@ -12,5 +12,8 @@ router.post('/login',fetchController.login)
 router.delete('/security/:id',fetchController.deleteSecurityProduct)
 router.delete('/investigation/:id',fetchController.deleteInvestigationProduct)
 router.delete('/user/:id',fetchController.deleteUser)
+router.get('/blogs',fetchController.fetchBlog)
+router.get('/blogs/:id',fetchController.fetchBlogById)
+
 
 module.exports = router;
