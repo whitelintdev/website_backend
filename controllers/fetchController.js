@@ -1,7 +1,8 @@
+const mongoose = require('mongoose');
 const User = require('../models/fetchModel');
 const Product = require('../models/productModel');
 const Userr = require('../models/registerModel');
-const mongoose = require('mongoose');
+
 
 const fetchData = async function (req, res) {
   try {
@@ -23,6 +24,32 @@ const fetchUser = async function (req, res) {
     res.status(500).send('Error retrieving user data from database');
   }
 };
+const fetchBlog = async function (req, res) {
+  try {
+    const blogData = await Blog.find({});
+    // res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+    res.json(blogData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving blog data from database');
+  }
+};
+
+const fetchBlogById = async function (req, res) {
+  try {
+    const blogId = req.params.id;
+    const blogData = await Blog.findById(blogId);
+    if (!blogData) {
+      res.status(404).send('Blog not found');
+      return;
+    }
+    res.json(blogData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving blog data from database');
+  }
+};
+
 
 const productData = async function (req, res) {
   try {
@@ -179,3 +206,5 @@ module.exports.login = login;
 module.exports.deleteSecurityProduct = deleteSecurityProduct;
 module.exports.deleteInvestigationProduct= deleteInvestigationProduct;
 module.exports.deleteUser= deleteUser;
+module.exports.fetchBlog=fetchBlog;
+module.exports.fetchBlogById=fetchBlogById;
