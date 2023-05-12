@@ -110,6 +110,7 @@ const login = async function (req, res)  {
   try {
   const username = req.body.username;
   const password = req.body.password;
+   res.header('Access-Control-Allow-Origin', '*');
 
   // Check if the credentials match the admin account
   if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
@@ -128,6 +129,7 @@ const login = async function (req, res)  {
 const deleteSecurityProduct = async function (req, res) {
   try {
     const id = req.params.id;
+    res.header('Access-Control-Allow-Origin', '*');
 
     // Check if the ID is a valid MongoDB ObjectID
     if (!mongoose.Types.ObjectId.isValid(id)) {
