@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const User = require('../models/fetchModel');
 const Product = require('../models/productModel');
 const Userr = require('../models/registerModel');
+const Blog = require('../models/blogModel')
 
 
 const fetchData = async function (req, res) {
